@@ -1,0 +1,41 @@
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+INSERT INTO `user` VALUES (1, 'user', '$2a$10$00dnYPJU0mbJ9Uz4g205V.6kdold0VoqaYWqocJRo0HhdAGaFLQ8O');
+INSERT INTO `user` VALUES (2, 'admin', '{bcrypt}$2a$10$Tme77eHtXzcB8ghQUepYguJr7P7ESg0Y7XHMnk60s.kf2A.BWBD9m');
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+
+-- ----------------------------
+-- Table structure for oauth_client_details
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_client_details`;
+CREATE TABLE `oauth_client_details`  (
+  `client_id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `resource_ids` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `client_secret` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `scope` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `authorized_grant_types` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `web_server_redirect_uri` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `authorities` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `access_token_validity` int(11) DEFAULT NULL,
+  `refresh_token_validity` int(11) DEFAULT NULL,
+  `additional_information` varchar(4096) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `autoapprove` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`client_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+INSERT INTO `oauth_client_details` VALUES ('clientId', NULL, '{bcrypt}$2a$10$TLNTjQPWbbaU0I06O2ItPux.dtr3tdj.7hMlF5VNd1CfFKO32sA/q', 'app', 'password,refresh_token,authorization_code', '', NULL, 1800, 1800, NULL, NULL);
+
+SET FOREIGN_KEY_CHECKS = 1;
