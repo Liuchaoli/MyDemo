@@ -39,3 +39,40 @@ CREATE TABLE `oauth_client_details`  (
 INSERT INTO `oauth_client_details` VALUES ('clientId', NULL, '{bcrypt}$2a$10$TLNTjQPWbbaU0I06O2ItPux.dtr3tdj.7hMlF5VNd1CfFKO32sA/q', 'app', 'password,refresh_token,authorization_code', '', NULL, 1800, 1800, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+
+-- ----------------------------
+-- Table structure for oauth_access_token
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_access_token`;
+CREATE TABLE `oauth_access_token`  (
+  `token_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `token` blob NULL,
+  `authentication_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `client_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `authentication` blob NULL,
+  `refresh_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `is_validated_device` bit(1) NULL DEFAULT b'1' COMMENT '是否通过设备验证 1:是 0：否',
+  PRIMARY KEY (`authentication_id`) USING BTREE,
+  INDEX `oauth_access_token_n1`(`token_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+ 
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+
+-- ----------------------------
+-- Table structure for oauth_refresh_token
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_refresh_token`;
+CREATE TABLE `oauth_refresh_token`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `token_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+  `token` blob NULL,
+  `authentication` blob NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11353 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
